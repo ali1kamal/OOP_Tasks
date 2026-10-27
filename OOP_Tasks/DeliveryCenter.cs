@@ -4,13 +4,14 @@ using System.Text;
 
 namespace OOP_Tasks
 {
-    public struct DeliveryCenter
+    public class DeliveryCenter
     {
+        public string CenterName { get; set; }
         private Shipment[] shipments;
 
         public DeliveryCenter() 
         {
-            shipments = new Shipment[10];
+            shipments = new Shipment[20];
         }
 
         public Shipment this[int position]
@@ -40,9 +41,37 @@ namespace OOP_Tasks
                 return default;
             }
         }
-        public void AddShipment(Shipment shipment)
+        public bool AddShipment(Shipment shipment)
         {
-            shipments[0] = shipment;
+            for (int i = 0; i < shipments.Length; i++)
+            {
+                if (string.IsNullOrEmpty(shipments[i].TrackingCode))
+                {
+                    shipments[i] = shipment;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool RemoveShipment(string trackingCode)
+        {
+             
+            for(int i = 0;i < shipments.Length; i++)
+            {
+                if (!string.IsNullOrWhiteSpace(shipments[i].TrackingCode) && shipments[i].TrackingCode== trackingCode)
+                {
+                    shipments[i] = default;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void PrintAllShipments()
+        {
+            foreach(var shipment in shipments)
+                Console.WriteLine(shipment);
         }
     }
 }

@@ -14,7 +14,7 @@
             //Console.WriteLine("Copied Address: " + addresse2.GetFullAddress()); 
             #endregion
 
-
+            
         }
     }
 }

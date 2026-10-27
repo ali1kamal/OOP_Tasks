@@ -1,18 +1,18 @@
 ﻿namespace OOP_Tasks;
-public struct Shipment
+public class Shipment
 {
     private string trackingCode;
     private string description;
-    private double weight;
+    private decimal weight;
     private decimal deliveryFee;
     public DeliveryAddress Destination { get; set; }
-    public decimal EstimatedCost => DeliveryFee + (decimal)(Weight * 5);
+    public virtual decimal EstimatedCost => DeliveryFee + (decimal)(Weight * 5);
 
     public Shipment(string TrackingCode) : this(TrackingCode, "Unknown", 1, 50, default)
     {
       
     }
-    public Shipment(string _trackingCode, string _description, double _weight, decimal _deliveryFee, DeliveryAddress _destination)
+    public Shipment(string _trackingCode, string _description, decimal _weight, decimal _deliveryFee, DeliveryAddress _destination)
     {
         trackingCode = !string.IsNullOrWhiteSpace(_trackingCode) ? _trackingCode : "UNKNOWN";
         description = !string.IsNullOrWhiteSpace(_description) ? _description : "Unknown";
@@ -36,7 +36,7 @@ public struct Shipment
         set { if (!string.IsNullOrWhiteSpace(value)) description = value; }
     }
 
-    public double Weight
+    public decimal Weight
     {
         get { return weight; }
         set { if(value > 0) weight = value; }
