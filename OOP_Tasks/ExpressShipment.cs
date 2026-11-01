@@ -16,6 +16,7 @@ public class ExpressShipment : Shipment
 
         }
     }
+    public override decimal EstimatedCost => base.EstimatedCost + ExtraFee;
     public ExpressShipment(string TrackingCode) : base(TrackingCode)
     {
 
@@ -24,5 +25,11 @@ public class ExpressShipment : Shipment
     {
         extraFee = _ExtraFee;
     }
-    public override decimal EstimatedCost => DeliveryFee + (Weight * 5) + ExtraFee;
+    
+    public override void PrintShipment()
+    {
+        base.PrintShipment();
+        Console.WriteLine($"Extra Fee: {extraFee} EGP");
+        
+    }
 }

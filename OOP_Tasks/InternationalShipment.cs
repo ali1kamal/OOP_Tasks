@@ -15,6 +15,7 @@ public class InternationalShipment : Shipment
         }
     }
 
+    public override decimal EstimatedCost => DeliveryFee + (Weight * 5) + CustomsFee;
     private decimal customsFee;
     public decimal CustomsFee
     {
@@ -32,5 +33,15 @@ public class InternationalShipment : Shipment
         CustomsFee = _CustomsFee;
     }
 
-    public override decimal EstimatedCost => DeliveryFee + (Weight * 5) + CustomsFee;
+    
+    public override void PrintShipment()
+    {
+        base.PrintShipment();
+        Console.WriteLine($"Destination Country: {destinationCountry}");
+        Console.WriteLine($"Customs Fee: {CustomsFee} EGP");
+    }
+    public virtual void GenerateCustomsReport()
+    {
+        Console.WriteLine("Generating International Customs Report...");
+    }
 }

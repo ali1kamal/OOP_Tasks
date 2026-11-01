@@ -5,4 +5,9 @@ public class StandardShipment : Shipment
     {
         
     }
+    public override decimal EstimatedCost => base.EstimatedCost;
+    public override void PrintShipment()
+    {
+        base.PrintShipment();
+    }
 }

@@ -48,7 +48,18 @@ public class Shipment
         if(newFee>0)
             deliveryFee = newFee;
     }
-    public void PrintShipment()
+
+    public void UpdateWeight(decimal newWeight)
+    {
+        if (newWeight > 0) weight = newWeight;
+    }
+
+    public void UpdateWeight(decimal newWeight,decimal ExtraPackingWeight)
+    {
+        if (newWeight > 0) weight = newWeight + ExtraPackingWeight;
+    }
+
+    public virtual void PrintShipment()
     {
         Console.WriteLine($"Tracking Code: {TrackingCode}");
         Console.WriteLine($"Description: {Description}");
